@@ -1,6 +1,6 @@
 # Building and Settlement Networks (bnet-snet)
 
-Welcome to the **bnet-snet** GitHub repository! This repository contains a collection of codes designed to create, delineate, and analyze building and settlement networks.
+Welcome to the **bnet-snet** GitHub repository! This repository contains a collection of codes designed to create, delineate, and analyze building and settlement networks. The code requires building footprint data, as polygons, and a road network with travel speeds. 
 
 ## Overview
 
