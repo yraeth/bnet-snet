@@ -20,6 +20,7 @@ arcpy.CheckOutExtension("Spatial")
 
 
 # Function to convert an ArcGIS table into a pandas DataFrame
+# credit to https://gist.github.com/d-wasserman/e9c98be1d0caebc2935afecf0ba239a0?permalink_comment_id=3623359
 def arcgis_table_to_df(in_fc, input_fields=None, query=""):
     """Convert an ArcGIS table into a pandas DataFrame.
     Args:
@@ -46,7 +47,10 @@ env.workspace = "C:/path/to/your/workspace"
 env.overwriteOutput = True
 start_time = time.time()
 
-timesteps = ["2020"]
+timesteps = ["1899",
+             "1918",
+             "1933",
+             "2020"]
 
 # Use a relative path for input and output files
 input_folder = "input_data/"
@@ -55,12 +59,12 @@ output_folder = "output_data/"
 
 for ts in timesteps:
     # Input Settings
-    obb_centroids = temp_folder + "obb_centroids.shp"
-    base_network = temp_folder + "base_network.shp"
-    noIntersection_network = temp_folder + "no_intersection_network.shp"
+    obb_centroids = temp_folder + ts + "obb_centroids.shp"
+    base_network = temp_folder + ts + "base_network.shp"
+    noIntersection_network = temp_folder + ts + "no_intersection_network.shp"
 
     # Load the footprint file and obtain its spatial reference
-    footprint = input_folder + "footprint.shp"
+    footprint = input_folder + ts + "footprint.shp"
     dsc = arcpy.Describe(footprint)
     coord_sys = dsc.spatialReference  # Get coordinate systems
 
