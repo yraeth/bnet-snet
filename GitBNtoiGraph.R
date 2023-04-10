@@ -52,7 +52,7 @@ for (ts in time_steps){
   main_poly_df <- do.call(rbind, polygons_list)
   writeOGR(main_poly_df, paste0(shppath, "/chull_", ts), layer = paste0("chull_", ts), driver = "ESRI Shapefile", overwrite_layer = TRUE)
   
-  # Calculate centroids and buffer of convex hull
+  # Calculate centroids and buffer of concave hull
   chull <- st_read(paste0(shppath, "/chull_", ts, "/chull_", ts, ".shp"))
   centroid_hull <- st_centroid(chull)
   centroid_hull <- as(centroid_hull, "Spatial")
