@@ -86,9 +86,7 @@ for ts in timesteps:
     arcpy.DefineProjection_management("./temp/sn.shp", coord_sys)
     arcpy.CopyFeatures_management("./temp/sn.shp", "./Building_Network.gdb/sn_copy")
     arcpy.MakeFeatureLayer_management("./Building_Network.gdb/sn_copy", "./Building_Network.gdb/temp_sn")
-    arcpy.SelectLayerByLocation_management("./Building_Network.gdb/temp_sn", "INTERSECT",
-                                           "./Building_Network.gdb/Lake_Buffer")
-    arcpy.DeleteFeatures_management("./Building_Network.gdb/temp_sn")
+
 
     connected = arcgis_table_to_df("./Building_Network.gdb/sn_copy")
 
