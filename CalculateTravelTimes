@@ -1,0 +1,37 @@
+# Import necessary libraries
+import arcpy
+from arcpy import env
+
+# Define the workspace
+env.workspace = "your_workspace_path"
+
+# Define the parameters
+od_cost_matrix = "OD Cost Matrix 2"
+origins = "Origins"
+destinations = "Destinations"
+selected = "selected"
+fields_origins = "Name ID #;TargetDestinationCount # #;CurbApproach # 0;Cutoff_time # #"
+fields_destinations = "Name ID #;CurbApproach # 0"
+search_tolerance = "5000 Meters"
+search_criteria = "roads_2020_final3 SHAPE;rn2022_3_Junctions NONE"
+match_type = "MATCH_TO_CLOSEST"
+append = "CLEAR"
+snap_to_position_along_network = "SNAP"
+snap_offset = "5 Meters"
+exclude_restricted_portion = "EXCLUDE"
+
+# Define the output path for the results
+output_folder = "your_output_folder_path"
+output_file = "df.csv"
+
+# Adding the origins to the OD Cost Matrix
+arcpy.na.AddLocations(od_cost_matrix, origins, selected, fields_origins, search_tolerance, None, search_criteria, match_type, append, snap_to_position_along_network, snap_offset, exclude_restricted_portion, None)
+
+# Adding the destinations to the OD Cost Matrix
+arcpy.na.AddLocations(od_cost_matrix, destinations, selected, fields_destinations, search_tolerance, None, search_criteria, match_type, append, snap_to_position_along_network, snap_offset, exclude_restricted_portion, None)
+
+# Solve the OD Cost Matrix
+arcpy.na.Solve(od_cost_matrix, "SKIP", "TERMINATE", None, '')
+
+# Convert the result table to a .csv file
+arcpy.conversion.TableToTable(od_cost_matrix + "\\Lines", output_folder, output_file, '', 'Name "Name" true true true 1024 Text 0 0,First,#,OD Cost Matrix 2\Lines,Name,0,1024;OriginID "OriginID" true true true 4 Long 0 0,First,#,OD Cost Matrix 2\Lines,OriginID,-1,-1;DestinationID "DestinationID" true true true 4 Long 0 0,First,#,OD Cost Matrix 2\Lines,DestinationID,-1,-1;Total_time "Total_time" true true true 8 Double 0 0,First,#,OD Cost Matrix 2\Lines,Total_time,-1,-1', '')
