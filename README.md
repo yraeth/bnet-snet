@@ -9,7 +9,7 @@ The workflow for using these codes is as follows:
 1. Create building networks (BNCreation.py)
 2. Delineate settlements (BNtoiGraph.R)
 3. Calculate settlement networks (CalculateTravelTimes, SNShpCreation.py)
-4. Conduct analysis (SettlementRelationshipTypes.R, SettlementStatistics.R, FractalDimension.py)
+4. Conduct analysis (SettlementRelationshipTypes.R, SettlementStatistics.R, FractalDimension.py, StatisticalAnalysis.R)
 
 ## Usage
 
