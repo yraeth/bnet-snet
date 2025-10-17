@@ -19,3 +19,5 @@ To use the codes in this repository, follow the steps listed in the overview.
 ## Contact
 
 For questions, suggestions, or feedback, please open an issue on the [GitHub repository](https://github.com/yraeth/bnet-snet/issues).
+
+ZENODO: https://doi.org/10.5281/zenodo.17375102
